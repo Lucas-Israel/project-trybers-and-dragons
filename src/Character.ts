@@ -1,6 +1,6 @@
 import Archetype, { Mage } from './Archetypes';
 import Energy from './Energy';
-import Fighter from './Fighter';
+import Fighter, { SimpleFighter } from './Fighter';
 import Race, { Elf } from './Races';
 import getRandomInt from './utils';
 
@@ -13,7 +13,6 @@ export default class Character implements Fighter {
   private _defence: number;
   private _dexterity: number;
   private _energy: Energy;
-  private _name: string;
 
   constructor(name: string) {
     this._archetype = new Mage(name);
@@ -27,7 +26,6 @@ export default class Character implements Fighter {
     this._maxLifePoints = this._race.maxLifePoints / 2;
     this._lifePoints = this._maxLifePoints;
     this._strength = getRandomInt(1, 10);
-    this._name = name;
   }
 
   get race() {
@@ -58,10 +56,6 @@ export default class Character implements Fighter {
     return this._defence;
   }
 
-  get name() {
-    return this._name;
-  }
-
   receiveDamage(attackPoints: number): number {
     const total = attackPoints - this._defence;
 
@@ -72,7 +66,7 @@ export default class Character implements Fighter {
     return this._lifePoints;
   }
 
-  attack(enemy: Fighter): void {
+  attack(enemy: Fighter | SimpleFighter): void {
     enemy.receiveDamage(this._strength);
   }
 
@@ -88,8 +82,24 @@ export default class Character implements Fighter {
     this._energy.amount = 10;
   }
 
-  special(enemy: Fighter): void {
-    const azura = enemy.defense || 0 + this.energy.amount * this._strength;
+  special(enemy: SimpleFighter | Fighter): void {
+    const minEnergy = this.energy.amount < 2 ? 2 : this.energy.amount;
+    let azura = minEnergy * this._strength;
+    if (Object.keys(enemy).includes('_defence')) {
+      const a = enemy as Fighter;
+      azura += a.defense;
+    }
+    
     enemy.receiveDamage(azura);
   }
 }
+
+const a = new Character('abc');
+const b = new Character('def');
+
+console.log(a);
+console.log(b);
+
+console.log(b.lifePoints);
+a.special(b);
+console.log(b.lifePoints);
