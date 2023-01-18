@@ -89,7 +89,7 @@ export default class Character implements Fighter {
   }
 
   special(enemy: Fighter): void {
-    const azura = enemy.defense + this.energy.amount * this._strength;
+    const azura = enemy.defense || 0 + this.energy.amount * this._strength;
     enemy.receiveDamage(azura);
   }
 }
