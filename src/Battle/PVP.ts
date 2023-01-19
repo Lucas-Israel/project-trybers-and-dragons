@@ -63,18 +63,3 @@ export default class PVP extends Battle {
     return super.fight();
   }
 }
-
-const fight = (battle: Battle) => battle.fight();
-
-const player1 = new Character('p1');
-for (let i = 0; i < 500; i += 1) player1.levelUp();
-const player2 = new Character('p2');
-const pvp1 = new PVP(player1, player2);
-
-const player3 = new Character('p3');
-for (let i = 0; i < 500; i += 1) player3.levelUp();
-const player4 = new Character('p4');
-const pvp2 = new PVP(player4, player3);
-
-console.log(fight(pvp1));
-console.log(fight(pvp2));
