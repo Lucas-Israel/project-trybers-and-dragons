@@ -84,12 +84,12 @@ export default class Character implements Fighter {
 
   special(enemy: SimpleFighter | Fighter): void {
     const minEnergy = this.energy.amount < 2 ? 2 : this.energy.amount;
-    let azura = minEnergy * this._strength;
+    let azuraStrike = minEnergy * this._strength;
     if (Object.keys(enemy).includes('_defence')) {
       const a = enemy as Fighter;
-      azura += a.defense;
+      azuraStrike += a.defense;
     }
     
-    enemy.receiveDamage(azura);
+    enemy.receiveDamage(azuraStrike);
   }
 }
