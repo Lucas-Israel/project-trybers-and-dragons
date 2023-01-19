@@ -58,7 +58,9 @@ export default class PVP extends Battle {
       sort[index].attack(sort[index === 0 ? 1 : 0]);
     }
 
-    console.log(`Vencedor: ${PVP.winner(sort).race.name}`);
+    const winner = PVP.winner(sort);
+
+    console.log(`Vencedor: ${winner.race.name}`);
     
     return super.fight();
   }

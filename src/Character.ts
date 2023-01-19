@@ -23,7 +23,7 @@ export default class Character implements Fighter {
       amount: getRandomInt(1, 10),
       type_: this._archetype.energyType, 
     };
-    this._maxLifePoints = Math.floor(this._race.maxLifePoints / 2);
+    this._maxLifePoints = this._race.maxLifePoints / 2;
     this._lifePoints = this._maxLifePoints;
     this._strength = getRandomInt(1, 10);
   }
