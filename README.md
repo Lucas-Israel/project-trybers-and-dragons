@@ -2,7 +2,7 @@
 
 ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
 
-# :open_book: Objetivo do projeto <nome do projeto>
+# :open_book: Objetivo do projeto trybers and dragons
 
 <details>
   <summary>:speech_balloon: Objetivos</summary>
